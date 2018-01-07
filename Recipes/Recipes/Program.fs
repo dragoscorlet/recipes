@@ -13,7 +13,7 @@ let main argv =
     
     let ingredient =  {Id = BsonObjectId(ObjectId.GenerateNewId()); IngredientName = "chicken"}
     let ingredients = new System.Collections.Generic.List<RecipeIngredient>()
-    ingredients.Add({ FreeIngredient =  ingredient;Qty = 2.0M; Unit= 0})
+    ingredients.Add({ FreeIngredient =  ingredient;Qty = 2.0M; Unit= Unit.Cup})
         
     let recipe = {
         Id = BsonObjectId(ObjectId.GenerateNewId())

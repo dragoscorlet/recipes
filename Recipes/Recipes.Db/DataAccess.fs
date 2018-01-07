@@ -35,7 +35,7 @@
 
     type Ingredient = {Id : BsonObjectId; IngredientName:string}
 
-    type RecipeIngredient = {FreeIngredient: Ingredient; Qty:decimal; Unit:int}
+    type RecipeIngredient = {FreeIngredient: Ingredient; Qty:decimal; Unit:Unit}
 
     type PictureLocation = {Thumbnail:Uri; FullSize:Uri}
 
