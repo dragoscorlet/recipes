@@ -9,6 +9,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Recipes.Domain", "Recipes.D
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Recipes.Db", "Recipes.Db\Recipes.Db.fsproj", "{9C634D0E-3999-489E-BCEB-16FA849798C5}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Recipes.Entities", "Recipes.Entities\Recipes.Entities.fsproj", "{D245389E-CFFF-41CA-9FB7-4878484ECA23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9C634D0E-3999-489E-BCEB-16FA849798C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C634D0E-3999-489E-BCEB-16FA849798C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C634D0E-3999-489E-BCEB-16FA849798C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D245389E-CFFF-41CA-9FB7-4878484ECA23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D245389E-CFFF-41CA-9FB7-4878484ECA23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D245389E-CFFF-41CA-9FB7-4878484ECA23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D245389E-CFFF-41CA-9FB7-4878484ECA23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

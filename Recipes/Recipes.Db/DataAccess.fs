@@ -4,38 +4,12 @@
     open MongoDB.Driver
     open MongoDB.FSharp
     open System
-
-
-    [<Literal>]
-    let ConnectionString = "mongodb://localhost:27017"
-    [<Literal>]
-    let DbName = "local"
-    [<Literal>]
-    let CollectionName = "PlanetData"
-    [<Literal>]
-    let IngredientCollectionName = "Ingredients"
-    [<Literal>]
-    let RecipeCollectionName = "Recipes"
- 
-    type Unit = Kilogram  = 0
-                |Gram = 1
-                |Liter = 2
-                |Deciliter = 3
-                |Milliliter = 4
-                |Cup = 5
-                |TableSpoon = 6
-                |DessertSpoon = 7
-                |TeaSpoon = 8
-                |Pound = 9
-                |Ounce = 10
-                |PintUs = 11
-                |PingGB = 12
-                |FluidOunceUS = 13
-                |FluidOunceGB = 14
+    open Literals
+    open Recipes.Entities
 
     type Ingredient = {Id : BsonObjectId; IngredientName:string}
 
-    type RecipeIngredient = {FreeIngredient: Ingredient; Qty:decimal; Unit:Unit}
+    type RecipeIngredient = {FreeIngredient: Ingredient; Qty:decimal; Unit: Entities.Unit}
 
     type PictureLocation = {Thumbnail:Uri; FullSize:Uri}
 
@@ -77,8 +51,23 @@
     let readAllRecipes () = 
         recipeCollection.Find(Builders.Filter.Empty).ToEnumerable()
 
+    let containsAtLeastOne (source: Ingredient list) (target: Ingredient list) = 
+        let sourceIds = source |> Seq.map  (fun i -> i.Id.ToString()) |> Seq.toList
+        let targetIds = target |> Seq.map (fun i -> i.Id.ToString()) |> Seq.toList
+        let intersection = 
+            Set.intersect (Set.ofList sourceIds) (Set.ofList targetIds) |> Set.toList
+        intersection.Length > 0
+    
+    let getFreeIngredient (recipeIngredients: RecipeIngredient seq) = 
+        recipeIngredients |> Seq.map (fun r -> r.FreeIngredient) |> Seq.toList
+    
+    let readRecipiesWithIngredients(ingredients: Ingredient list) = 
+        recipeCollection.Find(fun i -> 
+        containsAtLeastOne  (getFreeIngredient i.Ingredients) ingredients).ToEnumerable()
+
     let deleteIngredientById (ingredientId : BsonObjectId) = 
         ingredientCollection.DeleteOne( fun i -> i.Id = ingredientId)
 
     let deleteRecipeById (recipeId : BsonObjectId) = 
         recipeCollection.DeleteOne(fun r -> r.Id = recipeId)
+   

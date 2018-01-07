@@ -1,29 +1,14 @@
 ﻿namespace Recipes.Domain
 
 open System;
+open Recipes.Entities
 
 [<AutoOpen>]
 module DomainTypes = 
 
-    type Unit = Kilogram  = 0
-                |Gram = 1
-                |Liter = 2
-                |Deciliter = 3
-                |Milliliter = 4
-                |Cup = 5
-                |TableSpoon = 6
-                |DessertSpoon = 7
-                |TeaSpoon = 8
-                |Pound = 9
-                |Ounce = 10
-                |PintUs = 11
-                |PingGB = 12
-                |FluidOunceUS = 13
-                |FluidOunceGB = 14
-
     type Ingredient = Ingredient of string
 
-    type RecipeIngredient = {Ingredient: Ingredient; Qty:decimal; Unit:Unit}
+    type RecipeIngredient = {Ingredient: Ingredient; Qty:decimal; Unit:Entities.Unit}
 
     type PictureLocation = {Thumbnail:Uri; FullSize:Uri}
 

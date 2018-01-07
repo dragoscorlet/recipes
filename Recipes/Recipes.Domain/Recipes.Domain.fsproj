@@ -48,6 +48,18 @@
     <None Include="Script.fsx" />
     <Compile Include="DomainFunctions.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Recipes.Db\Recipes.Db.fsproj">
+      <Name>Recipes.Db</Name>
+      <Project>{9c634d0e-3999-489e-bceb-16fa849798c5}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipes.Entities\Recipes.Entities.fsproj">
+      <Name>Recipes.Entities</Name>
+      <Project>{d245389e-cfff-41ca-9fb7-4878484eca23}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>
