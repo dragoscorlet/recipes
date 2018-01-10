@@ -60,6 +60,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Recipes.Entities\Recipes.Entities.fsproj">
+      <Name>Recipes.Entities</Name>
+      <Project>{d245389e-cfff-41ca-9fb7-4878484eca23}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <Reference Include="DnsClient">
       <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
       <Private>True</Private>

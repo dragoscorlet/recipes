@@ -61,7 +61,11 @@
     let getFreeIngredient (recipeIngredients: RecipeIngredient seq) = 
         recipeIngredients |> Seq.map (fun r -> r.FreeIngredient) |> Seq.toList
     
-    let readRecipiesWithIngredients(ingredients: Ingredient list) = 
+    let readRecipiesWithIngredients(ingredientNames: string list) = 
+        let ingredients = ingredientNames 
+                        |> Seq.map (fun i -> {Id = BsonObjectId(ObjectId.GenerateNewId()); IngredientName = i }) 
+                        |> Seq.toList
+
         recipeCollection.Find(fun i -> 
         containsAtLeastOne  (getFreeIngredient i.Ingredients) ingredients).ToEnumerable()
 
