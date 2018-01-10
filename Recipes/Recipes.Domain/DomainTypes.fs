@@ -1,10 +1,8 @@
-﻿namespace Recipes.Domain
+﻿[<AutoOpen>]
+module DomainTypes 
 
 open System;
 open Recipes.Entities
-
-[<AutoOpen>]
-module DomainTypes = 
 
     type Ingredient = Ingredient of string
 

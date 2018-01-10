@@ -60,6 +60,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Recipes.Domain\Recipes.Domain.fsproj">
+      <Name>Recipes.Domain</Name>
+      <Project>{4f36b650-5d89-4f31-9150-b5ef8563c32b}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Recipes.Entities\Recipes.Entities.fsproj">
       <Name>Recipes.Entities</Name>
       <Project>{d245389e-cfff-41ca-9fb7-4878484eca23}</Project>

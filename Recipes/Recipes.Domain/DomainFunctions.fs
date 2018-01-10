@@ -1,7 +1,7 @@
 ﻿
 module DomainFunctions
 open DataAccess
-open Recipes.Domain.DomainTypes;
+open DomainTypes;
 open System;
 
 let getIngredientName ingredient = 

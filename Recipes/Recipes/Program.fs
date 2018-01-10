@@ -6,14 +6,15 @@ open System
 open MongoDB.Bson
 open MongoDB.Driver
 open MongoDB.FSharp
-
+open Entities
+open DomainFunctions
 
 [<EntryPoint>]
 let main argv = 
     
     let ingredient =  {Id = BsonObjectId(ObjectId.GenerateNewId()); IngredientName = "chicken"}
     let ingredients = new System.Collections.Generic.List<RecipeIngredient>()
-    ingredients.Add({ FreeIngredient =  ingredient;Qty = 2.0M; Unit= Unit.Cup})
+    ingredients.Add({ FreeIngredient =  ingredient;Qty = 2.0M; Unit= Entities.Unit.Cup})
         
     let recipe = {
         Id = BsonObjectId(ObjectId.GenerateNewId())
@@ -25,6 +26,8 @@ let main argv =
         Description = "sfsf";
         Source = Uri("http://www.sdasdas.com/someprecipe");   
         }
+    
+    let result = readRecepies [DomainTypes.Ingredient "chicken"]
 
     DataAccess.createRecipe(recipe)
 

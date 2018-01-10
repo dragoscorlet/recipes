@@ -65,9 +65,8 @@
         let ingredients = ingredientNames 
                         |> Seq.map (fun i -> {Id = BsonObjectId(ObjectId.GenerateNewId()); IngredientName = i }) 
                         |> Seq.toList
-
-        recipeCollection.Find(fun i -> 
-        containsAtLeastOne  (getFreeIngredient i.Ingredients) ingredients).ToEnumerable()
+        let recepies = readAllRecipes()
+        recepies |> Seq.where (fun r -> r.Ingredients.Exists (fun i -> ingredientNames |> Seq.exists (fun n -> n = i.FreeIngredient.IngredientName)))
 
     let deleteIngredientById (ingredientId : BsonObjectId) = 
         ingredientCollection.DeleteOne( fun i -> i.Id = ingredientId)
