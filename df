@@ -1,0 +1,57 @@
+[1mdiff --git a/Recipes/Recipes.Db/DataAccess.fs b/Recipes/Recipes.Db/DataAccess.fs[m
+[1mindex 40ec44e..300be79 100644[m
+[1m--- a/Recipes/Recipes.Db/DataAccess.fs[m
+[1m+++ b/Recipes/Recipes.Db/DataAccess.fs[m
+[36m@@ -5,6 +5,7 @@[m
+     open MongoDB.FSharp[m
+     open System[m
+     open Literals[m
+[32m+[m[32m    open MongoDB.Driver[m
+     open Recipes.Entities[m
+ [m
+     type Ingredient = {Id : BsonObjectId; IngredientName:string}[m
+[36m@@ -73,4 +74,7 @@[m
+ [m
+     let deleteRecipeById (recipeId : BsonObjectId) = [m
+         recipeCollection.DeleteOne(fun r -> r.Id = recipeId)[m
+[31m-   [m
+\ No newline at end of file[m
+[32m+[m[41m   [m
+[32m+[m[32m   let ingredientsFilter (ingredientNames: string list)=[m[41m [m
+[32m+[m[32m        let a = Builders<Recipe>[m
+[32m+[m[32m        a[m
+\ No newline at end of file[m
+[1mdiff --git a/Recipes/Recipes/Program.fs b/Recipes/Recipes/Program.fs[m
+[1mindex 990f04f..fd40d1e 100644[m
+[1m--- a/Recipes/Recipes/Program.fs[m
+[1m+++ b/Recipes/Recipes/Program.fs[m
+[36m@@ -11,27 +11,10 @@[m [mopen DomainFunctions[m
+ [m
+ [<EntryPoint>][m
+ let main argv = [m
+[31m-    [m
+[31m-    let ingredient =  {Id = BsonObjectId(ObjectId.GenerateNewId()); IngredientName = "chicken"}[m
+[31m-    let ingredients = new System.Collections.Generic.List<RecipeIngredient>()[m
+[31m-    ingredients.Add({ FreeIngredient =  ingredient;Qty = 2.0M; Unit= Entities.Unit.Cup})[m
+[31m-        [m
+[31m-    let recipe = {[m
+[31m-        Id = BsonObjectId(ObjectId.GenerateNewId())[m
+[31m-        Name="Chicken salad";[m
+[31m-        Ingredients = ingredients[m
+[31m-        CookTimeMin = 40.0M;[m
+[31m-        Servings = 4;[m
+[31m-        Picture =  {Thumbnail = Uri("http://www.image.com/thum.jpg"); FullSize = Uri("http://www.sddadad.com/full.jpg") };[m
+[31m-        Description = "sfsf";[m
+[31m-        Source = Uri("http://www.sdasdas.com/someprecipe");   [m
+[31m-        }[m
+[31m-    [m
+[31m-    let result = readRecepies [DomainTypes.Ingredient "chicken"][m
+ [m
+[31m-    DataAccess.createRecipe(recipe)[m
+[32m+[m[32m    let f = fun a b -> a + b[m
+ [m
+[31m-    let readRecipe = DataAccess.readAllRecipes()[m
+[32m+[m[32m    let v = f "asd" "sd"[m
+ [m
+     printfn "%A" argv[m
+     0 // return an integer exit code[m

@@ -5,6 +5,7 @@
     open MongoDB.FSharp
     open System
     open Literals
+    open MongoDB.Driver
     open Recipes.Entities
 
     type Ingredient = {Id : BsonObjectId; IngredientName:string}
@@ -74,3 +75,6 @@
     let deleteRecipeById (recipeId : BsonObjectId) = 
         recipeCollection.DeleteOne(fun r -> r.Id = recipeId)
    
+   let ingredientsFilter (ingredientNames: string list)= 
+        let a = Builders<Recipe>
+        a
