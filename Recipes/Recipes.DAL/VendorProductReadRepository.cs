@@ -14,7 +14,7 @@ namespace Recipes.DAL
             _connectionString = connectionString;
         }
 
-        private IEnumerable<VendorProduct> GetVendorProducts(IEnumerable<int> ingredients)
+        public IEnumerable<VendorProduct> GetVendorProducts(IEnumerable<int> ingredients)
         {
             using (var connection = new SqlConnection(_connectionString))
             {

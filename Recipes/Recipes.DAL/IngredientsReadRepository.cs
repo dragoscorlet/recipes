@@ -13,7 +13,7 @@ namespace Recipes.DAL
             _connectionString = connectionString;
         }
 
-        private IEnumerable<Ingredient> GetIngredientSuggetions(string partialIngredientName)
+        public IEnumerable<Ingredient> GetIngredientSuggestions(string partialIngredientName)
         {
             using (var connection = new SqlConnection(_connectionString))
             {

@@ -6,5 +6,6 @@
         public Ingredient Ingredient {get; set;}
         public int? QuantityInGrams { get; set; }
         public int? VolumeInMl {get; set;}
+
     }
 }
