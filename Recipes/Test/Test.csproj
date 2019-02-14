@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3E133B4-DFE3-4818-B0E4-F58B09B82466}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{F92DD222-FFFC-459C-B173-8137565A28E9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Recipes.Crawlers</RootNamespace>
-    <AssemblyName>Recipes.Crawlers</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>Test</RootNamespace>
+    <AssemblyName>Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,15 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.8.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.8.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,20 +48,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carrefour\CarrefourCrawler.cs" />
-    <Compile Include="Carrefour\Models\CarrefourParser.cs" />
-    <Compile Include="Carrefour\Models\Content.cs" />
-    <Compile Include="Carrefour\Models\Facet.cs" />
-    <Compile Include="Carrefour\Models\Item.cs" />
-    <Compile Include="Carrefour\Models\RootObject.cs" />
-    <Compile Include="Carrefour\Models\Value.cs" />
-    <Compile Include="Models\CrawledRecipe.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unica\UnicaCrawler.cs" />
-    <Compile Include="Unica\UnicaParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Recipes.CleanupTools\Recipes.CleanupTools.csproj">
+      <Project>{E632ACD0-092C-4D16-862B-5E7036892D2B}</Project>
+      <Name>Recipes.CleanupTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipes.Crawlers\Recipes.Crawlers.csproj">
+      <Project>{f3e133b4-dfe3-4818-b0e4-f58b09b82466}</Project>
+      <Name>Recipes.Crawlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipes.DAL\Recipes.DAL.csproj">
+      <Project>{D687169D-0A88-40FF-A248-45C02176C8F2}</Project>
+      <Name>Recipes.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipes.Domain\Recipes.Domain.csproj">
+      <Project>{d1c8f952-5ba4-42c5-9e39-af12d8c7e80b}</Project>
+      <Name>Recipes.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipes.Importer\Recipes.Importer.csproj">
+      <Project>{47ad5dd9-b1e1-4b7d-93ee-0aeffa7d94ad}</Project>
+      <Name>Recipes.Importer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

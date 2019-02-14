@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Recipes.DAL
+namespace Recipes.DAL.Schema
 {
-    public class Class1
+    public interface IRecipeReadRepository
     {
+        IEnumerable<string> GetAllBrands();
     }
 }

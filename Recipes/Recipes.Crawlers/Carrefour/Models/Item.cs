@@ -6,7 +6,7 @@
         public string title { get; set; }
         public string description { get; set; }
         public int[] categories { get; set; }
-        public float price { get; set; }
+        public decimal price { get; set; }
         public float initialPrice { get; set; }
         public string[] images { get; set; }
         public string published { get; set; }
@@ -14,7 +14,7 @@
         public float stock { get; set; }
         public int vat { get; set; }
         public float minSellingQuantity { get; set; }
-        public int maxSellingQuantity { get; set; }
+        public float maxSellingQuantity { get; set; }
         public float weightIncrement { get; set; }
         public object[] attributes { get; set; }
         public string packaging { get; set; }

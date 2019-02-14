@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3E133B4-DFE3-4818-B0E4-F58B09B82466}</ProjectGuid>
+    <ProjectGuid>{47AD5DD9-B1E1-4B7D-93EE-0AEFFA7D94AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Recipes.Crawlers</RootNamespace>
-    <AssemblyName>Recipes.Crawlers</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>Recipes.Importer</RootNamespace>
+    <AssemblyName>Recipes.Importer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,15 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.8.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.8.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,20 +41,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carrefour\CarrefourCrawler.cs" />
-    <Compile Include="Carrefour\Models\CarrefourParser.cs" />
-    <Compile Include="Carrefour\Models\Content.cs" />
-    <Compile Include="Carrefour\Models\Facet.cs" />
-    <Compile Include="Carrefour\Models\Item.cs" />
-    <Compile Include="Carrefour\Models\RootObject.cs" />
-    <Compile Include="Carrefour\Models\Value.cs" />
-    <Compile Include="Models\CrawledRecipe.cs" />
+    <Compile Include="IngredientCleanupExtensions.cs" />
+    <Compile Include="IngredientsImporter.cs" />
+    <Compile Include="RecipeMappingExtensions.cs" />
+    <Compile Include="RecipesImporter.cs" />
+    <Compile Include="UnicaRecipeImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unica\UnicaCrawler.cs" />
-    <Compile Include="Unica\UnicaParser.cs" />
+    <Compile Include="VendorMappingExtensions.cs" />
+    <Compile Include="CarrefourVendorProductImporter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Recipes.CleanupTools\Recipes.CleanupTools.csproj">
+      <Project>{e632acd0-092c-4d16-862b-5e7036892d2b}</Project>
+      <Name>Recipes.CleanupTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipes.Crawlers\Recipes.Crawlers.csproj">
+      <Project>{f3e133b4-dfe3-4818-b0e4-f58b09b82466}</Project>
+      <Name>Recipes.Crawlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipes.DAL\Recipes.DAL.csproj">
+      <Project>{d687169d-0a88-40ff-a248-45c02176c8f2}</Project>
+      <Name>Recipes.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

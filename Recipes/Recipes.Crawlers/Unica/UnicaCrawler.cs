@@ -92,7 +92,8 @@ namespace Recipes.Crawlers.Unica
                 var html = await httpClient.GetStringAsync(url);
 
                 return html;
-            }catch
+            }
+            catch
             {
                 return string.Empty;
             }
