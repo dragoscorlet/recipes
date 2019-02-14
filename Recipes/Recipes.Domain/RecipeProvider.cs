@@ -65,7 +65,7 @@ namespace Recipes.Domain
             };
         }
 
-        private IEnumerable<VendorProductInfo> GetVendorProducts(IEnumerable<int> ingredients)
+        public  IEnumerable<VendorProductInfo> GetVendorProducts(IEnumerable<int> ingredients)
         {
            return _vendorProductsrepository.GetVendorProducts(ingredients)
                 .GroupBy(ing => ing.Brand)
