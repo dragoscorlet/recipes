@@ -1,6 +1,7 @@
 ﻿using Recipes.Domain;
 using Recipes.Domain.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace Recipes.API.Controllers
@@ -14,9 +15,9 @@ namespace Recipes.API.Controllers
             _provider = new RecipeProvider();
         }
 
-        public IEnumerable<VendorProductInfo> GetVendorProducts(IEnumerable<int> ingredients)
+        public IEnumerable<VendorProductInfo> GetVendorProducts(string ingredients)
         {
-            return _provider.GetVendorProducts(ingredients);
+            return _provider.GetVendorProducts(ingredients.Split(',').Select(i => int.Parse(i)));
         }
     }
 }
