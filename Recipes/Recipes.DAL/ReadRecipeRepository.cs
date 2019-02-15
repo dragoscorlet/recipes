@@ -35,6 +35,17 @@ namespace Recipes.DAL
 
         public IEnumerable<Recipe> GetRecipes(IEnumerable<int> ingredients)
         {
+            return GetRecipes(ingredients, "[dbo].[GetRecipes]");
+        }
+
+        public IEnumerable<Recipe> GetRecipesWithExtraIngredients(IEnumerable<int> ingredients)
+        {
+            return GetRecipes(ingredients, "[dbo].[GetRecipesExtraIngredients]");
+        }
+
+
+        private IEnumerable<Recipe> GetRecipes(IEnumerable<int> ingredients, string spName)
+        {
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -42,7 +53,7 @@ namespace Recipes.DAL
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "[dbo].[GetRecipes]";
+                    command.CommandText = spName;
 
                     command.Parameters.AddWithValue("@Ingredients", CreateDataTable(ingredients));
 
@@ -58,16 +69,19 @@ namespace Recipes.DAL
 
             using (sqlDataReader)
             {
-                recipes.Add(new Recipe
+                while (sqlDataReader.Read())
                 {
-                    Id = (int)sqlDataReader["Id"],
-                    Name = (string)sqlDataReader["Name"],
-                    Description = (string)sqlDataReader["Description"],
-                    Url = (string)sqlDataReader["Url"],
-                    PreparationTimeMinutes = (int)sqlDataReader["PrepTimeMin"],
-                    Servings = (int)sqlDataReader["Servings"],
-                    Images = new List<string> { (string)sqlDataReader["Image"] }
-                });
+                    recipes.Add(new Recipe
+                    {
+                        Id = (int)sqlDataReader["Id"],
+                        Name = (string)sqlDataReader["Name"],
+                        Description = (string)sqlDataReader["Description"],
+                        Url = (string)sqlDataReader["Url"],
+                        PreparationTimeMinutes = (int)sqlDataReader["PrepTimeMin"],
+                        Servings = (int)sqlDataReader["Servings"],
+                        Images = new List<string> { (string)sqlDataReader["Image"] }
+                    });
+                }
             }
 
             return recipes;
@@ -91,7 +105,7 @@ namespace Recipes.DAL
             {
                 var recipe = new Recipe();
                 var images = new List<string>();
-                var ingredients = new List<Ingredient>();
+                var ingredients = new List<RecipeIngredient>();
 
                 while (sqlDataReader.Read())
                 {
@@ -105,14 +119,23 @@ namespace Recipes.DAL
                     if (recipe.Id > 0)
                     {
                         images.Add((string)sqlDataReader["ImageUrl"]);
-                        ingredients.Add(new Ingredient
-                        {
-                            Id = (int)sqlDataReader["IngredientId"],
-                            Name = (string)sqlDataReader["IngredientName"],
-                            IdLanguage = (int)sqlDataReader["IdLanguage"]
+                        ingredients.Add(new RecipeIngredient
+                        {   
+                            IdRecipe = recipe.Id,
+                            QuantityInGrams = (int)sqlDataReader["QuantityInGrams"],
+                            VolumeInMl = (int)sqlDataReader["VolumeInMl"],
+                            Ingredient = new Ingredient
+                            {
+                                Id = (int)sqlDataReader["IngredientId"],
+                                Name = (string)sqlDataReader["IngredientName"],
+                                IdLanguage = (int)sqlDataReader["IdLanguage"]
+                            }
                         });
                     }
                 }
+
+                recipe.Ingredients = ingredients;
+                recipe.Images = images;
 
                 return recipe;
             }

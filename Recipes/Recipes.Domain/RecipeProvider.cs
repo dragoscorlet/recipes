@@ -1,6 +1,7 @@
 ﻿using Recipes.DAL;
 using Recipes.DAL.Entities;
 using Recipes.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -27,9 +28,9 @@ namespace Recipes.Domain
            return  _ingredientsRepository.GetIngredientSuggestions(partialName);
         }
 
-        public IEnumerable<ListingRecipe> GetListingRecipes(IEnumerable<int> ingredients)
+        public IEnumerable<ListingRecipe> GetListingRecipes(IEnumerable<int> ingredients, bool includeExtraIngredients)
         {
-           return _reciperepository.GetRecipes(ingredients).Select(ing => new ListingRecipe
+           var exactMatchRecipes =_reciperepository.GetRecipes(ingredients).Select(ing => new ListingRecipe
             {
                 Id = ing.Id,
                 Image = ing.Images.FirstOrDefault(),
@@ -37,6 +38,17 @@ namespace Recipes.Domain
                 PrepTime = ing.PreparationTimeMinutes,
                 Servings = ing.Servings
             });
+
+            var extraMatchesRecipes = _reciperepository.GetRecipesWithExtraIngredients(ingredients).Select(ing => new ListingRecipe
+            {
+                Id = ing.Id,
+                Image = ing.Images.FirstOrDefault(),
+                Name = ing.Name,
+                PrepTime = ing.PreparationTimeMinutes,
+                Servings = ing.Servings
+            });
+
+            return extraMatchesRecipes.Concat(exactMatchRecipes);
         }
 
         public DetailRecipe GetDetailRecipe(int idRecipe)
@@ -65,10 +77,21 @@ namespace Recipes.Domain
             };
         }
 
-        public  IEnumerable<VendorProductInfo> GetVendorProducts(IEnumerable<int> ingredients)
+        public IEnumerable<VendorProductInfo> GetVendorProductsExactMatch(IEnumerable<int> ingredients)
+        {
+            return GetVendorProducts(ingredients, (ids, vendor) => ids.Count() == vendor.Products.Count());
+        }
+
+        public IEnumerable<VendorProductInfo> GetVendorProductsExtraMatches(IEnumerable<int> ingredients)
+        {
+            return GetVendorProducts(ingredients, (ids, vendor) => ids.Count() < vendor.Products.Count());
+        }
+
+
+        private IEnumerable<VendorProductInfo> GetVendorProducts(IEnumerable<int> ingredients, Func<IEnumerable<int>, VendorProductInfo, bool> productFilter)
         {
            return _vendorProductsrepository.GetVendorProducts(ingredients)
-                .GroupBy(ing => ing.Brand)
+                .GroupBy(ing => ing.Vendor)
                 .Select(group => new VendorProductInfo
                 {
                     Name = group.Key,
@@ -83,7 +106,8 @@ namespace Recipes.Domain
                         Title = dbIng.Title,
                         Url = dbIng.Url
                     })
-                });
+                }).Where(vendor => productFilter(ingredients, vendor));
         }
+
     }
 }

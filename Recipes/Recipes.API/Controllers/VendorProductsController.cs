@@ -15,9 +15,17 @@ namespace Recipes.API.Controllers
             _provider = new RecipeProvider();
         }
 
-        public IEnumerable<VendorProductInfo> GetVendorProducts(string ingredients)
+        [HttpGet]
+        public IEnumerable<VendorProductInfo> GetVendorProductsExactMatch(string ingredients)
         {
-            return _provider.GetVendorProducts(ingredients.Split(',').Select(i => int.Parse(i)));
+            return _provider.GetVendorProductsExactMatch(ingredients.Split(',').Select(i => int.Parse(i)));
         }
+
+        [HttpGet]
+        public IEnumerable<VendorProductInfo> GetVendorProductsExtraMatches(string ingredients)
+        {
+            return _provider.GetVendorProductsExtraMatches(ingredients.Split(',').Select(i => int.Parse(i)));
+        }
+
     }
 }

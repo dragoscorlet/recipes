@@ -15,13 +15,15 @@ namespace Recipes.API.Controllers
             _provider = new RecipeProvider();
         }
 
-        public IEnumerable<ListingRecipe> GetAllProducts(string ingredients)
+        [HttpGet]
+        public IEnumerable<ListingRecipe> GetRecipes(string ingredients, bool includeExtra)
         {   
 
-            return _provider.GetListingRecipes(ingredients.Split(',').Select(i => int.Parse(i)));
+            return _provider.GetListingRecipes(ingredients.Split(',').Select(i => int.Parse(i)), includeExtra);
         }
 
-        public DetailRecipe GetAllProducts(int idRecipe)
+        [HttpGet]
+        public DetailRecipe GetRecipe(int idRecipe)
         {
             return _provider.GetDetailRecipe(idRecipe);
         }
