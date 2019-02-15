@@ -44,22 +44,16 @@
     <Compile Include="Entities\VendorProductIngredient.cs" />
     <Compile Include="IngredientsReadRepository.cs" />
     <Compile Include="VendorProductReadRepository.cs" />
-    <Compile Include="IngredientsReadRepositoryOld.cs" />
-    <Compile Include="IngredientsWriteRepository.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Ingredient.cs" />
     <Compile Include="Entities\Recipe.cs" />
     <Compile Include="Entities\RecipeIngredient.cs" />
     <Compile Include="Entities\VendorProduct.cs" />
-    <Compile Include="NoiseWordsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadRecipeRepository.cs" />
-    <Compile Include="RecipeReadRepositoryOld.cs" />
-    <Compile Include="RecipeWriteRepository.cs" />
     <Compile Include="Schema\IIngredientsReadRepository.cs" />
     <Compile Include="Schema\INoiseWordsRepository.cs" />
     <Compile Include="Schema\IRecipeReadRepository.cs" />
-    <Compile Include="VendorWriteRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
