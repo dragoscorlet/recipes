@@ -1,0 +1,9 @@
+﻿@foreach(var recipe in @Model)
+{
+    <div id="@recipe.Id" onclick="LoadRecipe(@recipe.Id)">
+        <img src="@recipe.Image" width="200" height="200"/>
+        <p>@recipe.Name</p>
+        <p>Servings: @recipe.Servings</p>
+        <p>PrepTime: @recipe.PrepTime</p>
+    </div>
+}

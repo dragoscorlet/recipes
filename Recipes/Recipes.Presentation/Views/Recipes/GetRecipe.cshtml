@@ -1,0 +1,15 @@
+﻿@using System.Linq;
+
+<img src="@Model.Images[0]" width="500" height="500"/>
+<p>@Model.Name</p>
+<p>@Model.PreparationTimeMinutes</p>
+<p>@Model.Servings</p>
+<p>@Model.Description</p>
+<div>
+    <p>Ingredients</p>
+    @foreach (var ingredient in Model.Ingredients)
+    {
+        <p>@ingredient.Ingredient.Name @(ingredient.QuantityInGrams == null ? @ingredient.VolumeInMl : @ingredient.QuantityInGrams)</p>
+    }
+    <div id='vendor' onclick='LoadVendorProducts("@Model.IngredientIds")'>CARREFOUR</div>
+    </div>

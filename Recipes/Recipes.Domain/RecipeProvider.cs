@@ -79,7 +79,7 @@ namespace Recipes.Domain
 
         public IEnumerable<VendorProductInfo> GetVendorProductsExactMatch(IEnumerable<int> ingredients)
         {
-            return GetVendorProducts(ingredients, (ids, vendor) => ids.Count() == vendor.Products.Count());
+            return GetVendorProducts(ingredients, (ids, vendor) => true);
         }
 
         public IEnumerable<VendorProductInfo> GetVendorProductsExtraMatches(IEnumerable<int> ingredients)

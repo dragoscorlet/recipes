@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Recipes.Domain.Entities
 {
@@ -20,5 +21,9 @@ namespace Recipes.Domain.Entities
 
         public IEnumerable<RecipeIngredientInfo> Ingredients { get; set; }
 
+        public string IngredientIds
+        {
+            get { return string.Join(",", Ingredients.Select(ing => ing.Ingredient.Id)); }
+        }
     }
 }

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.CleanupTools", "Rec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.API", "Recipes.API\Recipes.API.csproj", "{37967E69-3F23-4C8F-98AB-734945012B04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipes.Presentation", "Recipes.Presentation\Recipes.Presentation.csproj", "{ACD37264-DE7C-4735-BBC9-6EB40971C03C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{37967E69-3F23-4C8F-98AB-734945012B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37967E69-3F23-4C8F-98AB-734945012B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37967E69-3F23-4C8F-98AB-734945012B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACD37264-DE7C-4735-BBC9-6EB40971C03C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD37264-DE7C-4735-BBC9-6EB40971C03C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD37264-DE7C-4735-BBC9-6EB40971C03C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD37264-DE7C-4735-BBC9-6EB40971C03C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

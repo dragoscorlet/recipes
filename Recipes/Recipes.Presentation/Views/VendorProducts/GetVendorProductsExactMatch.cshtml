@@ -1,0 +1,15 @@
+﻿@foreach (var vendor in @Model)
+{
+    <div>@vendor.Name</div>
+
+    foreach (var item in @vendor.Products)
+    {
+        <div id="@item.Id">
+            <img src="@item.ImageUrl" width="200" height="200" />
+            <p>@item.Title</p>
+            <p>@item.InStock</p>
+            <p>@item.Brand</p>
+            <p>@item.Price @item.Currency</p>
+        </div>
+    }
+}
