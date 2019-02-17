@@ -1,9 +1,11 @@
 ﻿@foreach(var recipe in @Model)
 {
-    <div id="@recipe.Id" onclick="LoadRecipe(@recipe.Id)">
-        <img src="@recipe.Image" width="200" height="200"/>
-        <p>@recipe.Name</p>
-        <p>Servings: @recipe.Servings</p>
-        <p>PrepTime: @recipe.PrepTime</p>
-    </div>
+    <figure class="recipelisting" id="@recipe.Id" onclick="LoadRecipe(@recipe.Id)">
+        <img src="@recipe.Image" />
+         <figcaption>
+             <div>@recipe.Name</div>
+             <div>Servings: @recipe.Servings</div>
+             <div>PrepTime: @recipe.PrepTime</div>
+         </figcaption>
+    </figure>
 }

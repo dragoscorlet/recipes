@@ -1,7 +1,5 @@
 ﻿@foreach (var vendor in @Model)
 {
-    <div>@vendor.Name</div>
-
     foreach (var item in @vendor.Products)
     {
         <div id="@item.Id">

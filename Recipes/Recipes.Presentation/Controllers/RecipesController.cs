@@ -1,9 +1,5 @@
 ﻿using Recipes.Domain;
-using Recipes.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Recipes.Presentation.Controllers
@@ -24,9 +20,11 @@ namespace Recipes.Presentation.Controllers
             return View();
         }
 
-        public ActionResult GetRecipes(string ingredients, bool includeExtra)
+        public ActionResult GetRecipes(string ingredients, int pageNumber, bool includeExtra)
         {
-            return View(_provider.GetListingRecipes(ingredients.Split(',').Select(i => int.Parse(i)), includeExtra));
+            var ids = ingredients.Split(',').Where(i => !string.IsNullOrEmpty(i)).Select(i => int.Parse(i));
+
+            return View(_provider.GetListingRecipes(ids, pageNumber, includeExtra));
         }
 
         public ActionResult GetRecipe(int idRecipe)

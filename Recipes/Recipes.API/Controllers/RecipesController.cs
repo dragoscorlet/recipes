@@ -16,10 +16,10 @@ namespace Recipes.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ListingRecipe> GetRecipes(string ingredients, bool includeExtra)
+        public IEnumerable<ListingRecipe> GetRecipes(string ingredients,int pageNumber, bool includeExtra)
         {   
 
-            return _provider.GetListingRecipes(ingredients.Split(',').Select(i => int.Parse(i)), includeExtra);
+            return _provider.GetListingRecipes(ingredients.Split(',').Select(i => int.Parse(i)), pageNumber, includeExtra);
         }
 
         [HttpGet]

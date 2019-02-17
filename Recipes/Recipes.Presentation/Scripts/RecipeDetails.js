@@ -6,7 +6,6 @@
             idRecipe: id
         },
         success: function (data) {
-
             $('#recipes').hide();
             $('#recipe').append(data);
         }

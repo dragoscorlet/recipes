@@ -33,18 +33,18 @@ namespace Recipes.DAL
 
         }
 
-        public IEnumerable<Recipe> GetRecipes(IEnumerable<int> ingredients)
+        public IEnumerable<Recipe> GetRecipes(IEnumerable<int> ingredients,int pageNumber)
         {
-            return GetRecipes(ingredients, "[dbo].[GetRecipes]");
+            return GetRecipes(ingredients, pageNumber, "[dbo].[GetRecipes]");
         }
 
-        public IEnumerable<Recipe> GetRecipesWithExtraIngredients(IEnumerable<int> ingredients)
+        public IEnumerable<Recipe> GetRecipesWithExtraIngredients(IEnumerable<int> ingredients, int pageNumber)
         {
-            return GetRecipes(ingredients, "[dbo].[GetRecipesExtraIngredients]");
+            return GetRecipes(ingredients,pageNumber, "[dbo].[GetRecipesExtraIngredients]");
         }
 
 
-        private IEnumerable<Recipe> GetRecipes(IEnumerable<int> ingredients, string spName)
+        private IEnumerable<Recipe> GetRecipes(IEnumerable<int> ingredients,int pageNumber, string spName)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -56,6 +56,9 @@ namespace Recipes.DAL
                     command.CommandText = spName;
 
                     command.Parameters.AddWithValue("@Ingredients", CreateDataTable(ingredients));
+                    command.Parameters.AddWithValue("@StartRowIndex", pageNumber * 20);
+                    command.Parameters.AddWithValue("@PageSize", 20);
+                    command.Parameters.Add("@TotalCount", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                     return ReadRecipes(command.ExecuteReader());
                 }

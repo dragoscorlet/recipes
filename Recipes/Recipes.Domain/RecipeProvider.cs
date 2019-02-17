@@ -28,9 +28,9 @@ namespace Recipes.Domain
            return  _ingredientsRepository.GetIngredientSuggestions(partialName);
         }
 
-        public IEnumerable<ListingRecipe> GetListingRecipes(IEnumerable<int> ingredients, bool includeExtraIngredients)
+        public IEnumerable<ListingRecipe> GetListingRecipes(IEnumerable<int> ingredients, int pageNumber, bool includeExtraIngredients)
         {
-           var exactMatchRecipes =_reciperepository.GetRecipes(ingredients).Select(ing => new ListingRecipe
+           var exactMatchRecipes =_reciperepository.GetRecipes(ingredients, pageNumber).Select(ing => new ListingRecipe
             {
                 Id = ing.Id,
                 Image = ing.Images.FirstOrDefault(),
@@ -39,16 +39,7 @@ namespace Recipes.Domain
                 Servings = ing.Servings
             });
 
-            var extraMatchesRecipes = _reciperepository.GetRecipesWithExtraIngredients(ingredients).Select(ing => new ListingRecipe
-            {
-                Id = ing.Id,
-                Image = ing.Images.FirstOrDefault(),
-                Name = ing.Name,
-                PrepTime = ing.PreparationTimeMinutes,
-                Servings = ing.Servings
-            });
-
-            return extraMatchesRecipes.Concat(exactMatchRecipes);
+            return exactMatchRecipes;
         }
 
         public DetailRecipe GetDetailRecipe(int idRecipe)
