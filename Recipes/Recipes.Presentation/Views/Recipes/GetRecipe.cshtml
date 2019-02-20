@@ -1,15 +1,91 @@
-﻿@using System.Linq;
+﻿
+    @*<div class="recipeImage"><img class="recImg" src="@Model.Images[0]"/></div>
+    <div class="recipeDetails">
+        <div>@Model.Name</div>
+        <div>@Model.PreparationTimeMinutes</div>
+        <div>@Model.Servings</div>
+        <div>Ingredients</div>
+        @foreach (var ingredient in Model.Ingredients)
+        {
+            <div>@ingredient.Ingredient.Name @(ingredient.QuantityInGrams == null ? @ingredient.VolumeInMl : @ingredient.QuantityInGrams)</div>
+        }
 
-<img src="@Model.Images[0]" width="500" height="500"/>
-<p>@Model.Name</p>
-<p>@Model.PreparationTimeMinutes</p>
-<p>@Model.Servings</p>
-<p>@Model.Description</p>
-<div>
-    <p>Ingredients</p>
-    @foreach (var ingredient in Model.Ingredients)
-    {
-        <p>@ingredient.Ingredient.Name @(ingredient.QuantityInGrams == null ? @ingredient.VolumeInMl : @ingredient.QuantityInGrams)</p>
-    }
-    <div id='vendor' onclick='LoadVendorProducts("@Model.IngredientIds")'>CARREFOUR</div>
-</div>
+    </div>
+    <div class="recipeDescription">@Model.Description</div>
+    <div class="vendorProducts">
+        <div id='vendor' onclick='LoadVendorProducts("@Model.IngredientIds")'>CARREFOUR</div>
+    </div>*@
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <h3>@Model.Name</h3>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="overflow:hidden">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="@Model.Images[0]" alt="First slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <h6>Ingrediente</h6>
+                </li>
+
+                @foreach (var ingredient in Model.Ingredients)
+                {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @ingredient.Ingredient.Name
+                    <span class="badge badge-primary badge-pill">@(ingredient.QuantityInGrams == null ? @ingredient.VolumeInMl + " ml" : @ingredient.QuantityInGrams + " g")</span>
+                </li>  
+                                
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <div class="card border-primary">
+                <div class="card-header">Mod de preparare</div>
+                <div class="card-body">
+                    <p class="card-text">@Model.Description</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <ul class="list-group">
+                <div id ="vendorProductsDrop"class="dropdown">
+                    <button class="btn btn-secondary col-md-12 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cumpara ingrediente
+                    </button>
+                    <div class="dropdown-menu col-md-12" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")' href="#">CARREFOUR</a>
+                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")' href="#">MEGA IMAGE</a>
+                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")' href="#">AUCHAN</a>
+                    </div>
+                </div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    sdfsfsf
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+

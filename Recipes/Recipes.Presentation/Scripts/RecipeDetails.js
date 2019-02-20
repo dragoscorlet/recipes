@@ -22,8 +22,10 @@ function LoadVendorProducts(data) {
                 ingredients: data
             },
             success: function (data) {
-                $('#recipe').append(data)
+                $('#vendorProductsDrop').append(data)
             }
         });
     });
+
+    return true;
 }

@@ -4,24 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello React</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="@Url.Content("~/CSS/Autocomplete.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/CSS/RecipeListings.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/CSS/RecipeDetails.css")" rel="stylesheet" type="text/css" />
+    <title>Recipes</title>
+</head>
+<body>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="@Url.Content("~/Scripts/Autocomplete.js")"></script>
     <script src="@Url.Content("~/Scripts/RecipeListing.js")"></script>
     <script src="@Url.Content("~/Scripts/RecipeDetails.js")"></script>
-    <link href="@Url.Content("~/CSS/Autocomplete.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/CSS/RecipeListings.css")" rel="stylesheet" type="text/css" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-</head>
-<body>
-    @*<div id="autocomplete">
-        Search: <input type="text" id="search">
-        <div id="selectedIngredients">
-
-        </div>
-    </div>*@
 
     <div class="search-container" id="autocomplete">
         <input type="text"  id="search"  placeholder="Cauta ingrediente">
@@ -32,9 +31,10 @@
     <div id="recipes">
     </div>
 
-    <div id="recipe">
+    <div id="recipe" class="container">
     </div>
 
     <input type="hidden" id="page" value="0"/>
+ 
 </body>
 </html>
