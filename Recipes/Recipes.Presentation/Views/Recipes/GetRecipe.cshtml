@@ -19,13 +19,13 @@
     <div class="row justify-content-md-center">
         <div class="col-md-6">
             <h3>@Model.Name</h3>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="overflow:hidden">
+            <div id="carouselExampleIndicators" class="carousel slide  mt-3" data-ride="carousel" style="overflow:hidden">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
-                <div class="carousel-inner">
+                <div class="carousel-inner" style="max-width:900px; max-height:300px !important;">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="@Model.Images[0]" alt="First slide">
                     </div>
@@ -42,14 +42,14 @@
         </div>
 
         <div class="col-md-5">
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+            <ul class="list-group  mt-5">
+                <li class="list-group-item d-flex justify-content-between align-items-center py-2 list-group-item-dark">
                     <h6>Ingrediente</h6>
                 </li>
 
                 @foreach (var ingredient in Model.Ingredients)
                 {
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1 list-group-item-action list-group-item-light">
                     @ingredient.Ingredient.Name
                     <span class="badge badge-primary badge-pill">@(ingredient.QuantityInGrams == null ? @ingredient.VolumeInMl + " ml" : @ingredient.QuantityInGrams + " g")</span>
                 </li>  
@@ -60,7 +60,7 @@
     </div>
     <div class="row justify-content-md-center">
         <div class="col-md-6">
-            <div class="card border-primary">
+            <div class="card border-light">
                 <div class="card-header">Mod de preparare</div>
                 <div class="card-body">
                     <p class="card-text">@Model.Description</p>
@@ -74,15 +74,11 @@
                         Cumpara ingrediente
                     </button>
                     <div class="dropdown-menu col-md-12" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")' href="#">CARREFOUR</a>
-                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")' href="#">MEGA IMAGE</a>
-                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")' href="#">AUCHAN</a>
+                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")'>CARREFOUR</a>
+                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")'>MEGA IMAGE</a>
+                        <a class="dropdown-item" onclick='LoadVendorProducts("@Model.IngredientIds")'>AUCHAN</a>
                     </div>
                 </div>
-
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    sdfsfsf
-                </li>
             </ul>
 
         </div>

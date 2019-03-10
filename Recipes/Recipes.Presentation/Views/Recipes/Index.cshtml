@@ -22,19 +22,64 @@
     <script src="@Url.Content("~/Scripts/RecipeDetails.js")"></script>
 
 
-    <div class="search-container" id="autocomplete">
-        <input type="text"  id="search"  placeholder="Cauta ingrediente">
-        <div id="selectedIngredients"></div>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">Recipes</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link waves-effect waves-light" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-light" href="#">Lista cumparaturi</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categorii
+                                </a>
+                                <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Action</a>
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+                                    <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="search-container" id="autocomplete">
+                <div class="col-md-12">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-12">
+                            <input type="text" id="search" placeholder="Cauta ingrediente">
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-12">
+                            <ul class="list-group" id="selectedIngredients">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <div class="row justify-content-md-center">
+            <div id="recipes">
+            </div>
 
-    <div id="recipes">
+            <div id="recipe" class="container">
+            </div>
+
+            <input type="hidden" id="page" value="0" />
+        </div>
     </div>
-
-    <div id="recipe" class="container">
-    </div>
-
-    <input type="hidden" id="page" value="0"/>
- 
 </body>
 </html>

@@ -4,7 +4,7 @@
     });
 
     $.ajax({
-        url: "http://localhost:53399/Recipes/GetRecipes",
+        url: "http://192.168.1.7:81/Recipes/GetRecipes",
         type: "POST",
         data: {
             ingredients: recipeIds.join(", "),
@@ -15,7 +15,9 @@
 
             if (parseInt($("#page").val()) === 0) {
                 $('#recipes').html('');
+                $('#recipe').html('');
                 $('#recipes').append(data);
+                $('#recipes').show();
             }
             else {
                 $('#recipes').append(data);

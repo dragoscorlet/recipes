@@ -4,7 +4,7 @@
             minLength: 3,
             source: function (request, response) {
                 $.ajax({
-                    url: "http://localhost:53399/IngredientsSuggest/SuggestIngredients",
+                    url: "http://192.168.1.7:81/IngredientsSuggest/SuggestIngredients",
                     dataType: "json",
                     type: "POST",
                     data: {
@@ -26,10 +26,10 @@
                 return false;
             },
             select: function (event, ui) {
-                $('#selectedIngredients').append('<div class="selectingIds" id="' + ui.item.value + '">' +
+                $('#selectedIngredients').append('<li class="list-group-item d-flex justify-content-between align-items-center py-1 selectingIds" id="' + ui.item.value + '">' +
                     '<div class="ing">' + ui.item.label +
                     '</div><div class="removeing" onclick="RemoveSelectedIng(' + ui.item.value
-                    + ')"><img src="https://cdn.iconscout.com/icon/free/png-256/delete-844-902124.png" height="20" width="20"/></div></div>');
+                    + ')"><img src="https://cdn.iconscout.com/icon/free/png-256/delete-844-902124.png" height="20" width="20"/></div></li>');
                 LoadRecipeListings();
                 return false;
             }
